@@ -1,49 +1,49 @@
 Tab = []
-for i in range(231):
-    Tab+=[0]
+for i in range(224):
+    Tab+=['█']
 pos = 210
 post = 0
 posmechant1=25
-Tab[posmechant1] = 9
+Tab[posmechant1] = '9'
 score = 0
-Tab[pos] = 1
+Tab[pos] = '1'
 print(Tab)
 for i in range(10):
     print("votre score est de :", score)
     n = input("Ou voulez vous allez: ")
     if n == "d":
-        Tab[pos] = 0
+        Tab[pos] = '█'
         pos = pos+1
-        Tab[pos] = 1
+        Tab[pos] = '1'
     elif n == "t":
-        post = pos - 29
-        for i in range(7):
+        post = pos - 16
+        for i in range(10):
             if post > posmechant1:
-                Tab[post] = 0
-                post = post - 29
-                Tab[post] = 7
+                Tab[post] = '█'
+                post = post - 16
+                Tab[post] = '7'
                 print(Tab)
             if post < posmechant1:
-                Tab[post] = 0
+                Tab[post] = '█'
                 print("raté")
                 print(Tab)
             if posmechant1 == post:
-                Tab[posmechant1] = 0
-                Tab[post] = 0
+                Tab[posmechant1] = '█'
+                Tab[post] = '█'
                 score = score + 100
                 print(Tab)
     elif n =="h":
-        Tab[pos] = 0
-        pos = pos-29
-        Tab[pos] = 1
+        Tab[pos] = '█'
+        pos = pos-16
+        Tab[pos] = '1'
     elif n =="b":
-        Tab[pos] = 0
-        pos = pos+29
-        Tab[pos] = 1
+        Tab[pos] = '█'
+        pos = pos+16
+        Tab[pos] = '1'
     elif n == "g":
-        Tab[pos] = 0
+        Tab[pos] = '█'
         pos = pos-1
-        Tab[pos] = 1
+        Tab[pos] = '1'
     else:
         print("vous ne pouvez que ecrire , g = pour aller a gauche; d = pour aller a droite; h = pour aller en haut; b = pour aller en bas; t = pour tier;")
         quit()
