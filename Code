@@ -6,7 +6,7 @@ post = 0
 posmechant1=25
 Tab[posmechant1] = '9'
 score = 0
-Tab[pos] = '1'
+Tab[pos] = 'ψ'
 print(Tab)
 for i in range(10):
     print("votre score est de :", score)
@@ -14,14 +14,25 @@ for i in range(10):
     if n == "d":
         Tab[pos] = '█'
         pos = pos+1
-        Tab[pos] = '1'
+        Tab[pos] = 'ψ'
+    elif n =="h":
+        Tab[pos] = '█'
+        pos = pos-16
+        Tab[pos] = 'ψ'
+    elif n =="b":
+        Tab[pos] = '█'
+        pos = pos+16
+        Tab[pos] = 'ψ'
+    elif n == "g":
+        Tab[pos] = '█'
+        pos = pos-1
+        Tab[pos] = 'ψ'
     elif n == "t":
-        post = pos - 16
-        for i in range(10):
+  for i in range(10):
             if post > posmechant1:
                 Tab[post] = '█'
                 post = post - 16
-                Tab[post] = '7'
+                Tab[post] = '•'
                 print(Tab)
             if post < posmechant1:
                 Tab[post] = '█'
@@ -32,19 +43,8 @@ for i in range(10):
                 Tab[post] = '█'
                 score = score + 100
                 print(Tab)
-    elif n =="h":
-        Tab[pos] = '█'
-        pos = pos-16
-        Tab[pos] = '1'
-    elif n =="b":
-        Tab[pos] = '█'
-        pos = pos+16
-        Tab[pos] = '1'
-    elif n == "g":
-        Tab[pos] = '█'
-        pos = pos-1
-        Tab[pos] = '1'
     else:
         print("vous ne pouvez que ecrire , g = pour aller a gauche; d = pour aller a droite; h = pour aller en haut; b = pour aller en bas; t = pour tier;")
         quit()
     print(Tab)
+    
