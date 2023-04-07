@@ -43,24 +43,22 @@ for i in range(100):
             if posmechant1==post:
                 Tab[posmechant1]='█'
                 Tab[post]='█'
-                score=score + 100
+                score=score+100
     deplacement=randint(1,4)
     if deplacement==1:
         Tab[posmechant1]='█'
-        posmechant1=posmechant1-1
+        posmechant1=posmechant1-13
         Tab[posmechant1]='9'
     if deplacement==2:
         Tab[posmechant1]='█'
-        posmechant1=posmechant1+1
+        posmechant1=posmechant1+13
         Tab[posmechant1]='9'
     if deplacement==3:
         Tab[posmechant1]='█'
-        posmechant1=posmechant1-13
+        posmechant1=posmechant1-1
         Tab[posmechant1]='9'
     if deplacement==4:
         Tab[posmechant1]='█'
-        posmechant1=posmechant1+13
+        posmechant1=posmechant1+1
         Tab[posmechant1]='9'
-    elif n==' ':
-        quit()
     print(Tab)
