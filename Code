@@ -61,4 +61,6 @@ for i in range(100):
         Tab[posmechant1]='█'
         posmechant1=posmechant1+13
         Tab[posmechant1]='9'
+    elif n==' ':
+        quit()
     print(Tab)
