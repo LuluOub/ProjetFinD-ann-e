@@ -1,52 +1,64 @@
-Tab = []
-for i in range(224):
+from random import randint
+Tab=[]
+for i in range(204):
     Tab+=['█']
-pos = 210
-post = 0
-posmechant1=25
-Tab[posmechant1] = '9'
-score = 0
-Tab[pos] = 'ψ'
+pos=201
+post=0
+posmechant1=6
+Tab[posmechant1]='9'
+score=0
+Tab[pos]='ψ'
 print(Tab)
-for i in range(30):
-    print("votre score est de :", score)
-    n = input("Ou voulez vous allez: ")
-    if n == "d":
-        Tab[pos] = '█'
-        pos = pos+1
-        Tab[pos] = 'ψ'
-    elif n == "t":
-        post = pos - 16
-        while posmechant1 != post:
-            if post > posmechant1:
-                Tab[post] = '█'
-                post = post - 16
-                Tab[post] = '•'
+for i in range(100):
+    print('Votre score est de :', score)
+    n=input('Ou voulez vous allez : ')
+    if n=='h':
+        Tab[pos]='█'
+        pos=pos-13
+        Tab[pos]='ψ'
+    if n=="b":
+        Tab[pos]='█'
+        pos=pos+13
+        Tab[pos]='ψ'
+    if n=='g':
+        Tab[pos]='█'
+        pos=pos-1
+        Tab[pos]='ψ'
+    if n=='d':
+        Tab[pos]='█'
+        pos=pos+1
+        Tab[pos]='ψ'
+    if n=='t':
+        post=pos-13
+        while posmechant1!=post:
+            if post>posmechant1:
+                Tab[post]='█'
+                post=post-13
+                Tab[post]='•'
                 print(Tab)
-            if post < posmechant1:
-                Tab[post] = '█'
-                print("raté")
+            if post<posmechant1:
+                Tab[post]='█'
+                print("Raté")
                 print(Tab)
-            if posmechant1 == post:
-                Tab[posmechant1] = '█'
-                Tab[post] = '█'
-                score = score + 100
-
-    elif n =="h":
-        Tab[pos] = '█'
-        pos = pos-16
-        Tab[pos] = 'ψ'
-    elif n =="b":
-        Tab[pos] = '█'
-        pos = pos+16
-        Tab[pos] = 'ψ'
-    elif n == "g":
-        Tab[pos] = '█'
-        pos = pos-1
-        Tab[pos] = 'ψ'
-    else:
-        print("vous ne pouvez que ecrire , g = pour aller a gauche; d = pour aller a droite; h = pour aller en haut; b = pour aller en bas; t = pour tier;")
-        quit()
+            if posmechant1==post:
+                Tab[posmechant1]='█'
+                Tab[post]='█'
+                score=score + 100
+    deplacement=randint(1,4)
+    if deplacement==1:
+        Tab[posmechant1]='█'
+        posmechant1=posmechant1-1
+        Tab[posmechant1]='9'
+    if deplacement==2:
+        Tab[posmechant1]='█'
+        posmechant1=posmechant1+1
+        Tab[posmechant1]='9'
+    if deplacement==3:
+        Tab[posmechant1]='█'
+        posmechant1=posmechant1-13
+        Tab[posmechant1]='9'
+    if deplacement==4:
+        Tab[posmechant1]='█'
+        posmechant1=posmechant1+13
+        Tab[posmechant1]='9'
     print(Tab)
-
-    
