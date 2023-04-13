@@ -23,14 +23,14 @@ for i in range(30):
                 post = post - 16
                 Tab[post] = '•'
                 print(Tab)
-            if post < posmechant1:
-                Tab[post] = '█'
-                print("raté")
-                print(Tab)
             if posmechant1 == post:
                 Tab[posmechant1] = '█'
                 Tab[post] = '█'
                 score = score + 100
+            if post < posmechant1:
+                Tab[post] = '█'
+                print("raté")
+                posmechant1=post
 
     elif n =="h":
         Tab[pos] = '█'
@@ -48,4 +48,3 @@ for i in range(30):
         print("vous ne pouvez que ecrire , g = pour aller a gauche; d = pour aller a droite; h = pour aller en haut; b = pour aller en bas; t = pour tier;")
         quit()
     print(Tab)
-
