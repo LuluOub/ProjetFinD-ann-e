@@ -1,0 +1,86 @@
+import pyxel
+from random import *
+
+
+class App:
+    def __init__(self):
+        pyxel.init(160, 160)
+
+        self.vaisseau_x = 80
+        self.vaisseau_y = 110
+
+
+        self.tirs_liste = []
+
+        self.tir_x = self.vaisseau_x
+        self.tir_y = self.vaisseau_y - 10
+
+        self.enemis_x = randint(0,160)
+        self.enemis_y = 0
+
+        pyxel.load("my_resource.pyxres")
+        
+        pyxel.run(self.update, self.draw)
+
+
+
+
+    def deplacement(self):
+        if pyxel.btnp(pyxel.KEY_UP, True,True):
+            self.vaisseau_y = self.vaisseau_y - 2
+
+        if pyxel.btnp(pyxel.KEY_DOWN,True,True):
+            self.vaisseau_y = self.vaisseau_y + 2
+
+        if pyxel.btnp(pyxel.KEY_LEFT,True,True):
+            self.vaisseau_x = self.vaisseau_x - 2
+
+        if pyxel.btnp(pyxel.KEY_RIGHT,True,True):
+            self.vaisseau_x = self.vaisseau_x + 2
+
+        if pyxel.btnp(pyxel.KEY_Q):
+            pyxel.quit()
+
+    def deplacementennemis(self):
+        self.enemis_y = self.enemis_y + 1
+        if self.enemis_y > 158:
+            self.enemis_y = 0
+
+
+    def tir_creation(self):
+        if pyxel.btnr(pyxel.KEY_SPACE):
+            self.tirs_liste.append([self.vaisseau_x+8,self.vaisseau_y-10])
+
+    def tir_deplacement(self):
+        for tir in self.tirs_liste:
+            tir[1] -= 1
+            if tir[1]< 8:
+                self.tirs_liste.remove(tir)
+                
+                
+    def colision(self):
+        if self.vaisseau_x-16 == self.enemis_x:
+            if self.vaisseau_y-16 == self.enemis_y:
+                pyxel.quit()
+
+
+    def update(self):
+
+        self.deplacement()
+
+        self.deplacementennemis()
+
+        self.tir_creation()
+        self.tir_deplacement()
+        
+        self.colision()
+
+    def draw(self):
+        pyxel.cls(0)
+        pyxel.blt(self.vaisseau_x,self.vaisseau_y,0,0,0,16,16)
+        pyxel.rect(self.enemis_x,self.enemis_y,5,5,1)
+
+        for tir in self.tirs_liste:
+            pyxel.rect(tir[0],tir[1],1,3,10)
+
+App()
