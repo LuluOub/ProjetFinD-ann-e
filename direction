@@ -16,5 +16,31 @@ creation de plusieurs ennemis je vais je pense la meme technique que le tir avec
 
 Faire un score 10pts a chaque enemis tuer |X|
 
+21/04
+Début du projet sur pyxel, Je démarre avec le fait de créer une interface de 160 par 160, et j'essaye de comprendre comment pyxel marche. 
+
+23/04
+Je créer un carée et je commence a comprendre comment faire pour le deplacer c'est un peu le même systeme que le projet avec la console sauf qu'on peut detecter si les touches sont enfoncés et si la touche est maintenue, on detecte ca avec la variable btnp(touche, T/F, T/F)
+
+25/04
+Je créer un second personnage celui-ci sera le mechants tres vite je comprend comme quoi je dois mettre au coordonées X un randint comme ça l'apparition de cette enemis est aleatoire. Je rencontre tout de meme le probleme que cette enemis ne bouge pas il reste statique. 
+Je créer donc 2 autre coordonées dans les init qui seront les coordonées de ce mechant, et a chaque update donc chaque frame j'enleve 1 a la coordonées y de ce mechant. 
+J'obtient donc un mechant qui descend de facon verticale.
+27/04
+Le probleme de cette énemis c'est qu'apres qu'il est fait les 160 de y il s'arrete pas et j'ai toujours pas la solutions pour faire qu'il y en ai plusieur a intervalle regulier qui apparaissent donc je décide que des qu'il est a 158 en y il revient a 0. Je chercherais plus tard la technique pour pouvoir faire apparaitre plus d'enemis et de facon aleatoire
+
+29/04
+Je créer le systeme de tir, j'ai reussit a faire que des que la barre espace est pressé un rectangle est crer sauf que celui ci marche une fois, donc je commence a essayer de trouver des solutions sur internet. Apres beaucoup de recherche vu que le GitHub de pyxel et les documents sur internet sont très surperficiel, j'ai trouvé enfin la technique a mon probleme 
+c'est de créer une liste, qui ajoute à chaque bouton espace pressé un objet qu'on nomme tir et qui va avoir pour coordonées le x du vaisseau et le y du vaisseau mais cette fois-ci -8 pour que le tir n'apparaissent pas au meme endroit que le vaisseau 
+
+30/04
+La lecture du GitHub de Pyxel me fait comprendre comme quoi je peux améliorer le modele du vaisseau qui est pour l'instant un carrée, en utilisant sur un terminal de commande la commande "pyxel edit PYXEL_RESOURCE_FILE", qui va t'emmener dans une sorte d'editeur d'image ou tu pourra créer ce que tu veux avec des pixel. 
+J'ai installe sur steam un application gratuite qui se nomme Pixel Studio, qui est comme l'editeur integrée de pyxel sauf qu'il est plus agréable a utiliser, donc je créer mon modele de vaisseau en 16x16 je voulais en meme temps un peu de details sans qu'il prenne toute la place. Après l'avoir créer j'ai juste eu l'importer dans l'éditeur d'image de pyxel
+et j'ai grâce a la commande pyxel.blt(x,y, etc) mon vaisseau qui n'est plus un carré mais un vrai vaisseau. 
+Je calibre aussi mon tir en rajoutant +8 a son x etant donné que le tir ne sortait plus du vaisseau mais d'une aile car le modele est devenu plus grand.
+
+31/04
+Je cherche aujourd'hui a créer la colision qui marche a peu pres le probleme c'est qu'il ne prend pas toute la taille du modele mais je pense avoir trouvé la technique mais cela va devoir utiliser 4 if, cette colision sera utilise pour detruite le vaisseau si un enemis le touche mais aussi pour quand le tir touche un enemis. 
+Il nous restera plus qu'à créer plusieur enemis a intervalle regulier, qui devrait pas nous poser probleme on utilisera la meme technique avec le tir, j'hesite a utiliser un while et qu'a chaque fois que le while est a un multiple de 30 donc 30 60 90 etc un enemis apparait.
 
 
