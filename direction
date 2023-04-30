@@ -10,7 +10,7 @@ Faire des delimitations du tableau, avec le fait que si le personnage est au bor
 Pyxel :
 Deplacement, tir, model du vaisseau, le fait que le joueur ne sorte pas de la fenetre |Fait|
 
-colission presque faite |X|
+colission presque faite, vu que le vaisseau fait du 16x16 la collision n'est pas a son centre.  |X|
 
-creation de plusieurs ennemis |X|
+creation de plusieurs ennemis je vais je pense la meme technique que le tir avec les listes.  |X|
 
