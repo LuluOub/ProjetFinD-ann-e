@@ -10,7 +10,7 @@ class App:
         self.vaisseau_y = 110
 
 
-        self.tirs_liste = []
+        self.tir_liste = []
 
         self.tir_x = self.vaisseau_x
         self.tir_y = self.vaisseau_y - 10
@@ -26,39 +26,72 @@ class App:
 
 
     def deplacement(self):
-        if pyxel.btnp(pyxel.KEY_UP, True,True):
+        
+        '''
+But : deplacer l'objets rectangles qui a les coordonées du vaisseau
+Entree : self
+Sortie : a chaque frame on regarde si soit le bouton Haut, soit Bas,soit Gauche, soit Droite, est pressé si il y en a un qui est pressée on enleve un a la coordonées soit x soit y ce qui fera deplacer
+le vaisseau 
+'''
+        
+        if pyxel.btnp(pyxel.KEY_UP, True,True) and self.vaisseau_y > 0:
             self.vaisseau_y = self.vaisseau_y - 2
 
-        if pyxel.btnp(pyxel.KEY_DOWN,True,True):
+        if pyxel.btnp(pyxel.KEY_DOWN,True,True)and self.vaisseau_y < 144:
             self.vaisseau_y = self.vaisseau_y + 2
 
-        if pyxel.btnp(pyxel.KEY_LEFT,True,True):
+        if pyxel.btnp(pyxel.KEY_LEFT,True,True)and self.vaisseau_x > 0:
             self.vaisseau_x = self.vaisseau_x - 2
 
-        if pyxel.btnp(pyxel.KEY_RIGHT,True,True):
+        if pyxel.btnp(pyxel.KEY_RIGHT,True,True)and self.vaisseau_x < 144:
             self.vaisseau_x = self.vaisseau_x + 2
 
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
 
     def deplacementennemis(self):
+        
+        '''
+But : Faire que l'ennemis se déplace
+Entrée : self ce qui a était initialisé dans le init
+Sortie : la coordonées ennemis y est ajoutée 1 a chaque frame ce qui le fait descendre. Et si le coordonées y arrive a 158 donc a la fin de la fenetre on le renvois a 0 sauf qu'il sera supprimé des qu'il arrive a cette coordonées normalement
+c'est juste pour l'instant
+'''
+        
         self.enemis_y = self.enemis_y + 1
         if self.enemis_y > 158:
             self.enemis_y = 0
 
 
     def tir_creation(self):
+         '''
+But : Créer le tir
+Entrée : self ce qui a était initialisé dans le init
+Sortie : a chaque fois que la barre espace est pressée on ajoute dans la liste tir_list un tir de coordonées vaisseau_x +8 car le vaisseau fait 16 pixel et on veut qu'il soit au millieu et de coord vaisseau y - 8 pour qu'il soit au dessus du personnage 
+'''
+        
         if pyxel.btnr(pyxel.KEY_SPACE):
-            self.tirs_liste.append([self.vaisseau_x+8,self.vaisseau_y-10])
+            self.tir_liste.append([self.vaisseau_x+8,self.vaisseau_y-8])
 
     def tir_deplacement(self):
-        for tir in self.tirs_liste:
+               '''
+But : Deplacer le tir
+Entrée : self ce qui a était initialisé dans le init
+Sortie : Le tir est deplacer de 1 a chaque frame et si il atteint 8 en y il est supprimer 
+'''
+        for tir in self.tir_liste:
             tir[1] -= 1
             if tir[1]< 8:
-                self.tirs_liste.remove(tir)
+                self.tir_liste.remove(tir)
                 
                 
     def colision(self):
+        
+               '''
+But : Créer la colision
+Entrée : self ce qui a était initialisé dans le init, les coordonées 
+Sortie : detecter si la coordonées est la meme avec l'enemis et le vaisseau et quitter si il y a cette colision 
+'''
         if self.vaisseau_x-16 == self.enemis_x:
             if self.vaisseau_y-16 == self.enemis_y:
                 pyxel.quit()
@@ -80,7 +113,7 @@ class App:
         pyxel.blt(self.vaisseau_x,self.vaisseau_y,0,0,0,16,16)
         pyxel.rect(self.enemis_x,self.enemis_y,5,5,1)
 
-        for tir in self.tirs_liste:
+        for tir in self.tir_liste:
             pyxel.rect(tir[0],tir[1],1,3,10)
 
 App()
