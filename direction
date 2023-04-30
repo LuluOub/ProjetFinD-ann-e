@@ -8,7 +8,7 @@ Faire des delimitations du tableau, avec le fait que si le personnage est au bor
 
 
 Pyxel :
-Deplacement, tir, model du vaisseau |Fait|
+Deplacement, tir, model du vaisseau, le fait que le joueur ne sorte pas de la fenetre |Fait|
 
 colission presque faite |X|
 
