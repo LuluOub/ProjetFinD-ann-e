@@ -43,4 +43,7 @@ Je calibre aussi mon tir en rajoutant +8 a son x etant donné que le tir ne sort
 Je cherche aujourd'hui a créer la colision qui marche a peu pres le probleme c'est qu'il ne prend pas toute la taille du modele mais je pense avoir trouvé la technique mais cela va devoir utiliser 4 if, cette colision sera utilise pour detruite le vaisseau si un enemis le touche mais aussi pour quand le tir touche un enemis. 
 Il nous restera plus qu'à créer plusieur enemis a intervalle regulier, qui devrait pas nous poser probleme on utilisera la meme technique avec le tir, j'hesite a utiliser un while et qu'a chaque fois que le while est a un multiple de 30 donc 30 60 90 etc un enemis apparait.
 
+1/05
+Je viens d'implementer l'apparition d'enemis je n'ai pas rencontre de bug etant donné que la technique etait la meme que pour le tir sauf que j'ai du rechercher longtemps car a la base je voulais mettre un while mais j'ai trouve une fonction beaucoup plus simple qui est pyxel.frame_count qui compte le nombre de frame
+je sais que je veux en faire spawn un toute les 2 secondes et que 1s = 30 frame alors j'en ai mis 60. Je commence tout de même a chercher un systeme pour qu'a chaque fois que le joueur passe un peu de temps la difficulté soit augmenté avec des spawn d'enemis bcp plus regulier. 
 
