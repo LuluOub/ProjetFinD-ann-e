@@ -59,8 +59,13 @@ class App:
         # Entree : la liste enemis_liste
         # Sortie : toute les 2 secondes / 60 frames un enemis apparait en y = 0 et en x = allant de 0 à 160 
         if (pyxel.frame_count % 60 == 0):
-            self.enemis_liste.append([randint(0, 160), 0])
-
+            self.enemis_liste.append([randint(8, 152), 0])
+        if(pyxel.frame_count >= 600):
+            if (pyxel.frame_count % 30 == 0):
+                self.enemis_liste.append([randint(8, 152), 0])   
+        if(pyxel.frame_count >= 1200):
+            if (pyxel.frame_count % 15 == 0):
+                self.enemis_liste.append([randint(8, 152), 0]) 
 
 
     def deplacementennemis(self):
