@@ -9,9 +9,15 @@ class App:
         self.vaisseau_x = 80
         self.vaisseau_y = 110
 
-
+        # Liste de tir avec leurs coordonées 
         self.tir_liste = []
-
+        
+        # Liste d'enemis
+        self.enemis_liste = []
+        
+        self.a = 0
+        self.vie = 3
+        
         self.tir_x = self.vaisseau_x
         self.tir_y = self.vaisseau_y - 10
 
@@ -26,10 +32,10 @@ class App:
 
 
     def deplacement(self):
-#But : deplacer l'objets rectangles qui a les coordonées du vaisseau
-#Entree : self
-#Sortie : a chaque frame on regarde si soit le bouton Haut, soit Bas,soit Gauche, soit Droite, est pressé si il y en a un qui est pressée on enleve un a la coordonées soit x soit y ce qui fera deplacer
-#le vaisseau 
+        #But : deplacer l'objets rectangles qui a les coordonées du vaisseau
+        #Entree : self
+        #Sortie : a chaque frame on regarde si soit le bouton Haut, soit Bas,soit Gauche, soit Droite, est pressé si il y en a un qui est pressée on enleve un a la coordonées soit x soit y ce qui fera deplacer
+        #le vaisseau 
 
         
         if pyxel.btnp(pyxel.KEY_UP, True,True) and self.vaisseau_y > 0:
@@ -47,18 +53,29 @@ class App:
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
 
+
+    def creationenemis(self):
+        # But : créer toute les 2 secondes un enemis
+        # Entree : la liste enemis_liste
+        # Sortie : toute les 2 secondes / 60 frames un enemis apparait en y = 0 et en x = allant de 0 à 160 
+        if (pyxel.frame_count % 60 == 0):
+            self.enemis_liste.append([randint(0, 160), 0])
+
+
+
     def deplacementennemis(self):
         
         
-#But : Faire que l'ennemis se déplace
-#Entrée : self ce qui a était initialisé dans le init
-#Sortie : la coordonées ennemis y est ajoutée 1 a chaque frame ce qui le fait descendre. Et si le coordonées y arrive a 158 donc a la fin de la fenetre on le renvois a 0 sauf qu'il sera supprimé des qu'il arrive a cette coordonées normalement
-#c'est juste pour l'instant
+        #But : Faire que l'ennemis se déplace
+        #Entrée : self ce qui a était initialisé dans le init, la liste enemis_liste
+        #Sortie : Pour chaque enemis a chaque frame, la coordonées y a un +1 pour que l'enemis descende, comme pour le tir si il la coordonées y est superieur a 158 alors l'enemis est supprimé 
 
         
-        self.enemis_y = self.enemis_y + 1
-        if self.enemis_y > 158:
-            self.enemis_y = 0
+        for enemis in self.enemis_liste:
+            enemis[1] = enemis[1] + 1
+            if enemis[1] > 158:
+                self.enemis_liste.remove(enemis)
+            
 
 
     def tir_creation(self):
@@ -99,13 +116,16 @@ class App:
         self.tir_creation()
         self.tir_deplacement()
         self.colision()
+        self.creationenemis()
 
     def draw(self):
         pyxel.cls(0)
         pyxel.blt(self.vaisseau_x,self.vaisseau_y,0,0,0,16,16)
-        pyxel.rect(self.enemis_x,self.enemis_y,5,5,1)
 
         for tir in self.tir_liste:
             pyxel.blt(tir[0],tir[1],1,0,0,1,5)
+            
+        for enemis in self.enemis_liste:
+            pyxel.blt(enemis[0],enemis[1],2,0,0,8,6)
 
 App()
