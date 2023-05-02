@@ -5,7 +5,7 @@ Changer le tire, le personnage et l'ennemis | Robin |
 Mettre plusieurs ennemis qui se deplace [! regarde ou si la case d'à coté est libre sinon relancer un randint] | Lucca |
 Faire des delimitations du tableau, avec le fait que si le personnage est au bord a droite ne pas le laisser aller a droite et si il est en bas ou en haut ne pas les laisser | Toma et Lucas |
 Tout mettre en vertical 
-
+faire une fonction afficher le tableau
 
 
 Pyxel :
