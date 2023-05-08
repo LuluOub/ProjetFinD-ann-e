@@ -4,7 +4,7 @@ from random import *
 
 class App:
     def __init__(self):
-        pyxel.init(160, 160)
+        pyxel.init(300, 150)
 
         self.vaisseau_x = 80
         self.vaisseau_y = 110
@@ -12,6 +12,7 @@ class App:
         # Liste de tir avec leurs coordonées 
         self.tir_liste = []
         
+        self.n = input("Ou voulez vous allez: ")
         # Liste d'enemis
         self.enemis_liste = []
         
@@ -21,8 +22,8 @@ class App:
         self.tir_x = self.vaisseau_x
         self.tir_y = self.vaisseau_y - 10
 
-        self.enemis_x = randint(0,160)
-        self.enemis_y = 0
+        self.enemis_y = randint(0,160)
+        self.enemis_x = 0
 
         pyxel.load("my_resource.pyxres")
         
@@ -37,17 +38,31 @@ class App:
         #Sortie : a chaque frame on regarde si soit le bouton Haut, soit Bas,soit Gauche, soit Droite, est pressé si il y en a un qui est pressée on enleve un a la coordonées soit x soit y ce qui fera deplacer
         #le vaisseau 
 
+        if self.n == "d" and self.vaisseau_x < 284:
+            self.vaisseau_x = self.vaisseau_x + 2
+            pass
+        if self.n == "g"and self.vaisseau_x > 0:
+             self.vaisseau_x = self.vaisseau_x - 2
+             pass
+            
+        if self.n == "h"and self.vaisseau_y > 0:
+            self.vaisseau_y = self.vaisseau_y - 2
+            pass
         
+        if self.n == "b"and self.vaisseau_y < 284:
+            self.vaisseau_y = self.vaisseau_y + 2
+            pass
+            
         if pyxel.btnp(pyxel.KEY_UP, True,True) and self.vaisseau_y > 0:
             self.vaisseau_y = self.vaisseau_y - 2
 
-        if pyxel.btnp(pyxel.KEY_DOWN,True,True)and self.vaisseau_y < 144:
+        if pyxel.btnp(pyxel.KEY_DOWN,True,True)and self.vaisseau_y < 284:
             self.vaisseau_y = self.vaisseau_y + 2
 
         if pyxel.btnp(pyxel.KEY_LEFT,True,True)and self.vaisseau_x > 0:
             self.vaisseau_x = self.vaisseau_x - 2
 
-        if pyxel.btnp(pyxel.KEY_RIGHT,True,True)and self.vaisseau_x < 144:
+        if pyxel.btnp(pyxel.KEY_RIGHT,True,True)and self.vaisseau_x < 284:
             self.vaisseau_x = self.vaisseau_x + 2
 
         if pyxel.btnp(pyxel.KEY_Q):
@@ -59,13 +74,13 @@ class App:
         # Entree : la liste enemis_liste
         # Sortie : toute les 2 secondes / 60 frames un enemis apparait en y = 0 et en x = allant de 0 à 160 
         if (pyxel.frame_count % 60 == 0):
-            self.enemis_liste.append([randint(8, 152), 0])
+            self.enemis_liste.append([0, randint(8, 142)])
         if(pyxel.frame_count >= 600):
             if (pyxel.frame_count % 30 == 0):
-                self.enemis_liste.append([randint(8, 152), 0])   
+                self.enemis_liste.append([0, randint(8, 142)])   
         if(pyxel.frame_count >= 1200):
             if (pyxel.frame_count % 15 == 0):
-                self.enemis_liste.append([randint(8, 152), 0]) 
+                self.enemis_liste.append([0, randint(8, 142)]) 
 
 
     def deplacementennemis(self):
@@ -77,8 +92,8 @@ class App:
 
         
         for enemis in self.enemis_liste:
-            enemis[1] = enemis[1] + 1
-            if enemis[1] > 158:
+            enemis[0] = enemis[0] + 1
+            if enemis[0] > 292:
                 self.enemis_liste.remove(enemis)
             
 
