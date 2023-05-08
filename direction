@@ -51,3 +51,5 @@ Il nous restera plus qu'à créer plusieur enemis a intervalle regulier, qui dev
 Je viens d'implementer l'apparition d'enemis je n'ai pas rencontre de bug etant donné que la technique etait la meme que pour le tir sauf que j'ai du rechercher longtemps car a la base je voulais mettre un while mais j'ai trouve une fonction beaucoup plus simple qui est pyxel.frame_count qui compte le nombre de frame
 je sais que je veux en faire spawn un toute les 2 secondes et que 1s = 30 frame alors j'en ai mis 60. Je commence tout de même a chercher un systeme pour qu'a chaque fois que le joueur passe un peu de temps la difficulté soit augmenté avec des spawn d'enemis bcp plus regulier. 
 
+8/05
+J'ai ajouté des colission entre l'enemis et le tir, j'ai aussi essayé d'implementer le code fait avec la console dans pyxel mais quand tu met dans le input uen diretion elle se répete indefiniment et eje ne sais pas regler ça 
