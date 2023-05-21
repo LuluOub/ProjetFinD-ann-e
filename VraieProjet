@@ -1,9 +1,11 @@
 import pyxel
-from random import *
+import random
 tableau = [1,2,5]
+
 Tab = []
 Tab = [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,]
 vaisseau = 93
+enemis=[0,20,40,60,80,100,120,140,160]
 Tab[vaisseau] = 2
 print(Tab)
 class App:
@@ -13,7 +15,9 @@ class App:
 
         self.vaisseau = 93
         self.tir = self.vaisseau - 1
+        self.enemis = 0
         self.tir_liste = []
+        self.enemis_liste = []
         pyxel.load("my_resource.pyxres")
         pyxel.run(self.update, self.draw)
         
@@ -51,7 +55,20 @@ class App:
             pyxel.quit()    
         
         
-        
+    def creationenemis(self):
+        # But : créer toute les 2 secondes un enemis
+        # Entree : la liste enemis_liste
+        # Sortie : toute les 2 secondes / 60 frames un enemis apparait en y = 0 et en x = allant de 0 à 160 
+        if (pyxel.frame_count % 60 == 0):
+
+            self.enemis = random.choice(enemis)
+            self.enemis_liste.append(self.enemis)
+            Tab[self.enemis] = 0
+            Tab[self.enemis] = 4
+            
+            
+            
+            
     
     def tir_creation(self):
         if pyxel.btnp(pyxel.KEY_SPACE):
@@ -74,6 +91,7 @@ class App:
         self.deplacement()
         self.tir_creation()
         self.tir_deplacement()
+        self.creationenemis()
 
     def draw(self):
         
@@ -83,6 +101,9 @@ class App:
         y = 0
         l = 0
         for i in Tab:
+            if i == 4:
+                pyxel.blt(x,y,2,0,0,6,8)
+                x = x + 16
             if i == 3:
                 pyxel.blt(x,y+8,1,0,0,5,1)
                 x = x + 16
