@@ -1,0 +1,105 @@
+import pyxel
+from random import *
+tableau = [1,2,5]
+Tab = []
+Tab = [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,]
+vaisseau = 93
+Tab[vaisseau] = 2
+print(Tab)
+class App:
+    def __init__(self):
+        pyxel.init(304, 160)
+        
+
+        self.vaisseau = 93
+        self.tir = self.vaisseau - 1
+        self.tir_liste = []
+        pyxel.load("my_resource.pyxres")
+        pyxel.run(self.update, self.draw)
+        
+    def deplacement(self):
+        #But : deplacer l'objets rectangles qui a les coordonées du vaisseau
+        #Entree : self
+        #Sortie : a chaque frame on regarde si soit le bouton Haut, soit Bas,soit Gauche, soit Droite, est pressé si il y en a un qui est pressée on enleve un a la coordonées soit x soit y ce qui fera deplacer
+        #le vaisseau
+        
+        if pyxel.btnp(pyxel.KEY_UP, True,False):
+            Tab[self.vaisseau] = 0
+            self.vaisseau = self.vaisseau - 19
+            Tab[self.vaisseau] = 2
+            print(Tab,self.vaisseau)
+            
+        if pyxel.btnp(pyxel.KEY_DOWN,True,False):
+            Tab[self.vaisseau] = 0
+            self.vaisseau = self.vaisseau + 19
+            Tab[self.vaisseau] = 2
+            print(Tab,self.vaisseau)
+
+        if pyxel.btnp(pyxel.KEY_LEFT,True,False):
+            Tab[self.vaisseau] = 0
+            self.vaisseau = self.vaisseau - 1
+            Tab[self.vaisseau] = 2
+            print(Tab,self.vaisseau)
+
+        if pyxel.btnp(pyxel.KEY_RIGHT,True,False):
+            Tab[self.vaisseau] = 0
+            self.vaisseau = self.vaisseau + 1
+            Tab[self.vaisseau] = 2
+            print(Tab,self.vaisseau)
+
+        if pyxel.btnp(pyxel.KEY_Q):
+            pyxel.quit()    
+        
+        
+        
+    
+    def tir_creation(self):
+        if pyxel.btnp(pyxel.KEY_SPACE):
+           self.tir = self.vaisseau - 1
+           Tab[self.tir] = 3
+           self.tir_liste.append(self.tir)
+           print(Tab,self.vaisseau,self.tir_liste)
+     
+    def tir_deplacement(self):
+       for tir in self.tir_liste:
+           Tab[self.tir] = 0
+           self.tir -= 1
+           Tab[self.tir] = 3
+           if self.tir == 0 or self.tir == 20 or self.tir == 40 or self.tir == 60 or self.tir == 80 or self.tir == 100 or self.tir == 120 or self.tir == 140:
+               self.tir_liste.remove(tir)
+               Tab[self.tir] = 0
+           print(tir)
+        
+    def update(self):
+        self.deplacement()
+        self.tir_creation()
+        self.tir_deplacement()
+
+    def draw(self):
+        
+        
+        x = 0
+        xtir = 0
+        y = 0
+        l = 0
+        for i in Tab:
+            if i == 3:
+                pyxel.blt(x,y+8,1,0,0,5,1)
+                x = x + 16
+            if i == 2:
+                pyxel.blt(x,y,0,0,0,16,16)
+                x = x +16
+            if i == 1: 
+                pyxel.rect(x,y,16,16,tableau[1])
+                x = x + 16
+            if i == 0:
+               pyxel.rect(x,y,16,16,tableau[2])
+               x = x + 16
+            l = l + 1
+            if l == 19:
+                l = 0
+                y = y+16
+                x = 0
+            
+App()
+
