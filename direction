@@ -53,3 +53,6 @@ je sais que je veux en faire spawn un toute les 2 secondes et que 1s = 30 frame 
 
 8/05
 J'ai ajouté des colission entre l'enemis et le tir, j'ai aussi essayé d'implementer le code fait avec la console dans pyxel mais quand tu met dans le input uen diretion elle se répete indefiniment et je ne sais pas regler ça. Je dois faire aussi que le chaque case du dictionnaire correspond a quelques pixel du screen de pyxel
+
+Entre le 8/05 et le 21/05:
+J'ai refait avec les vraie demande de Mr Mongiat, maintenant des qu'une action se passe sur la console elle est reprise sur pyxel, c'est assez dur de gerer tout ça car des fois il y a des petits soucis comme si on appuis 2 fois sur la touche espace le tir va faire une ligne de plus. La creation d'ennemis n'est toujours pas fait mais maintenant le cadrillage est fait et chaque case du tableau correspond a une case dans pyxel .
