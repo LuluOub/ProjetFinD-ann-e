@@ -16,6 +16,7 @@ class App:
         self.vaisseau = 93
         self.tir = self.vaisseau - 1
         self.enemis = 0
+        self.a = 0
         self.tir_liste = []
         self.enemis_liste = []
         pyxel.load("my_resource.pyxres")
@@ -67,9 +68,34 @@ class App:
             Tab[self.enemis] = 4
             
             
+    def deplacementennemis(self):
+        
+        
+        #But : Faire que l'ennemis se déplace
+        #Entrée : self ce qui a était initialisé dans le init, la liste enemis_liste
+        #Sortie : Pour chaque enemis a chaque frame, la coordonées y a un +1 pour que l'enemis descende, comme pour le tir si il la coordonées y est superieur a 158 alors l'enemis est supprimé 
+        for enemis in self.enemis_liste:
+            self.a = self.a +1
+            if self.a == 10:
+                Tab[self.enemis] = 0
+                self.enemis= self.enemis + 1
+                Tab[self.enemis] = 4
+                self.a = 0
+            if self.enemis == 19 or self.enemis == 38 or self.enemis == 57 or self.enemis == 76 or self.enemis == 95 or self.enemis == 114 or self.enemis == 133 or self.enemis == 152:
+                Tab[self.enemis] = 0
+                self.enemis_liste.remove(enemis)
             
+    def colision(self):
+        # But : Créer la colision
+        # Entrée : self ce qui a était initialisé dans le init, les coordonées 
+        # Sortie : detecter si la coordonées est la meme avec l'enemis et le vaisseau et quitter si il y a cette colision
+        if self.enemis == self.tir:
+            Tab[self.enemis] = 0
+            Tab[self.tir] = 0
+            print("touché")
+        if self.enemis == self.vaisseau:
+            pyxel.quit()
             
-    
     def tir_creation(self):
         if pyxel.btnp(pyxel.KEY_SPACE):
            self.tir = self.vaisseau - 1
@@ -92,6 +118,8 @@ class App:
         self.tir_creation()
         self.tir_deplacement()
         self.creationenemis()
+        self.deplacementennemis()
+        self.colision()
 
     def draw(self):
         
@@ -102,7 +130,7 @@ class App:
         l = 0
         for i in Tab:
             if i == 4:
-                pyxel.blt(x,y,2,0,0,6,8)
+                pyxel.blt(x+4,y+4,2,0,0,6,8)
                 x = x + 16
             if i == 3:
                 pyxel.blt(x,y+8,1,0,0,5,1)
