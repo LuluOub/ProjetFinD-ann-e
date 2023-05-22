@@ -56,3 +56,6 @@ J'ai ajouté des colission entre l'enemis et le tir, j'ai aussi essayé d'implem
 
 Entre le 8/05 et le 21/05:
 J'ai refait avec les vraie demande de Mr Mongiat, maintenant des qu'une action se passe sur la console elle est reprise sur pyxel, c'est assez dur de gerer tout ça car des fois il y a des petits soucis comme si on appuis 2 fois sur la touche espace le tir va faire une ligne de plus. La creation d'ennemis n'est toujours pas fait mais maintenant le cadrillage est fait et chaque case du tableau correspond a une case dans pyxel .
+
+22/05
+Je suis sur un bug avec les deplacement des enemis vu que c'est dans un liste des qu'un autre enemis apparait celui-ci d'avant n'avance plus et de plus si je trouve que la vitesse augmente et je ne commprend pas pourquoi 
