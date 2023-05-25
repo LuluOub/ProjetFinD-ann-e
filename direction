@@ -10,7 +10,7 @@ fiare par rappot au code des tableau a 2 dimension
 1 tablau affiché par pyxel
 
 enlever l'orienté objet avec les self et au lieux de créer des enemis, faire une liste 5 enemis chaqu'un des coordonées differente quand la personne a eleminer l'autre enemis passer au prochains. 
-Faire aussi un random int, si c'est = 1 gauche etc... Changer les coordonées;
+Faire aussi un random int, si c'est = 1 gauche etc... Changer les coordonées des enemis
 
 Pyxel :
 Deplacement, tir, model du vaisseau, le fait que le joueur ne sorte pas de la fenetre |Fait|
