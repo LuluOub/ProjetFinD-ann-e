@@ -9,8 +9,26 @@ faire une fonction afficher le tableau
 fiare par rappot au code des tableau a 2 dimension
 1 tablau affiché par pyxel
 
-enlever l'orienté objet avec les self et au lieux de créer des enemis, faire une liste 5 enemis chaqu'un des coordonées differente quand la personne a eleminer l'autre enemis passer au prochains. 
-Faire aussi un random int, si c'est = 1 gauche etc... Changer les coordonées des enemis
+
+
+
+
+
+
+
+A FAIREEEEEEE :
+- Enlever tous les self. donc tir, enemis, et vaisseau
+- Faire un liste de coordonées des enemis aléatoirement ( choice )
+- a chaque enemis eliminer faire apparaitre un nouveau donc modifier le spawn des enemis 
+- faire un randint qui est pick a chaque fois, changer les coordonées a chaque fois de l'enemis aller a gauche droite haut ou bas; tout les 60 frames encore ou 30 ça depend 
+
+
+
+
+
+
+
+
 
 Pyxel :
 Deplacement, tir, model du vaisseau, le fait que le joueur ne sorte pas de la fenetre |Fait|
