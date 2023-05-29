@@ -1,0 +1,181 @@
+import pyxel
+from random import *
+
+
+tableau = [0,0,0]
+
+Tab = []
+Tab = [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,]
+
+vaisseau = 93
+Tab[vaisseau] = 2
+
+enemis_liste=[]
+enemis_liste = [0,20,40,60]
+tir_liste=[]
+
+print(Tab)
+
+def deplacement_vaisseau(vaisseau):
+    #But : deplacer l'objets rectangles qui a les coordonées du vaisseau
+    #Entree : self
+    #Sortie : a chaque frame on regarde si soit le bouton Haut, soit Bas,soit Gauche, soit Droite, est pressé si il y en a un qui est pressée on enleve un a la coordonées soit x soit y ce qui fera deplacer
+    #le vaisseau
+    
+    if pyxel.btnp(pyxel.KEY_UP, True,False):
+        Tab[vaisseau] = 0
+        vaisseau = vaisseau - 19
+        #print(vaisseau)
+        Tab[vaisseau] = 2
+        #print(Tab,vaisseau)
+        
+    if pyxel.btnp(pyxel.KEY_DOWN,True,False):
+        Tab[vaisseau] = 0
+        vaisseau = vaisseau + 19
+        Tab[vaisseau] = 2
+        #print(Tab,vaisseau)
+        
+    if pyxel.btnp(pyxel.KEY_LEFT,True,False):
+        Tab[vaisseau] = 0
+        vaisseau = vaisseau - 1
+        Tab[vaisseau] = 2
+        #print(Tab,vaisseau)
+    
+    if pyxel.btnp(pyxel.KEY_RIGHT,True,False):
+        Tab[vaisseau] = 0
+        vaisseau = vaisseau + 1
+        Tab[vaisseau] = 2
+        #print(Tab,vaisseau)
+    
+    if pyxel.btnp(pyxel.KEY_Q):
+        pyxel.quit()    
+    
+    return vaisseau
+
+def creation_tir(vaisseau, position_tir):
+    if pyxel.btnp(pyxel.KEY_SPACE):
+        position_tir = vaisseau - 1
+        Tab[position_tir] = 3
+        tir_liste.append(position_tir)
+    return position_tir
+
+def deplacement_tir():
+    #if (pyxel.frame_count % 10 == 0):
+    i = 0 #compteur
+    nouvel_emplacement = 0
+    for tir in tir_liste:
+        for y in range(0,len(tir_liste)):
+            Tab[tir] = 0
+            nouvel_emplacement = tir - 1
+            tir_liste[i] = nouvel_emplacement # déplacement du tir vers la gauche
+            Tab[nouvel_emplacement] = 3 # mise à jour du tableau avec le nouvel emplacement du tir
+            # arrete le tir aux limites de l'écran
+            print(tir_liste)
+            if tir_liste[i] == 0 or tir_liste[i] == 19 or tir_liste[i] == 38 or tir_liste[i] == 57 or tir_liste[i] == 76 or tir_liste[i] == 95 or tir_liste[i] == 114 or tir_liste[i] == 133:
+                tir_liste.remove(nouvel_emplacement)
+                Tab[nouvel_emplacement] = 0    
+
+
+def colision(enemispos,vaisseau,score):
+    for tir in tir_liste:
+        if enemispos == tir:
+            print("touché")
+            Tab[enemispos] = 0
+            enemis_liste.remove(enemis_liste[0])
+            enemispos = enemis_liste[0]
+            Tab[enemispos] = 4
+    if enemispos == vaisseau:
+        pyxel.quit()
+    return score,enemispos
+    
+
+def deplacement_enemis(enemisposition):
+    Tab[enemisposition]= 0
+    Tab[enemisposition] = 4
+    if (pyxel.frame_count % 10 == 0):
+        deplacementaleatoire = randint(0,4)
+        if deplacementaleatoire == 0: # vers la droite
+            Tab[enemisposition] = 1
+            enemisposition = enemisposition + 1
+            Tab[enemisposition] = 4
+        if deplacementaleatoire == 1 and enemisposition != 0 and enemisposition != 19 and enemisposition !=  38 and enemisposition != 57 and enemisposition != 76 and enemisposition != 95 and enemisposition != 114 and enemisposition != 133 and enemisposition != 152: # vers la gauche
+            Tab[enemisposition] = 0
+            enemisposition = enemisposition - 1
+            Tab[enemisposition] = 4
+        if deplacementaleatoire == 2: # vers le haut
+            Tab[enemisposition] = 0
+            enemisposition = enemisposition + 19
+            Tab[enemisposition] = 4
+        if deplacementaleatoire == 3 and enemisposition >= 19 and enemisposition != 0: # vers le bas
+            Tab[enemisposition] = 0
+            enemisposition = enemisposition - 19
+            Tab[enemisposition] = 4
+    
+    return enemisposition
+        
+
+
+
+
+
+
+
+    
+def update():
+    global vaisseau
+    global score
+    global enemisposition
+    global position_tir
+    global nouvel_emplacement
+    vaisseau = deplacement_vaisseau(vaisseau)
+    enemisposition = deplacement_enemis(enemisposition)
+    position_tir = creation_tir(vaisseau, position_tir)
+    nouvel_emplacement = deplacement_tir()
+    score = colision(enemisposition,vaisseau,score)
+
+
+def draw():
+            
+    x = 0
+    xtir = 0
+    y = 0
+    l = 0
+    for i in Tab:
+        if i == 4:
+            pyxel.blt(x+4,y+4,2,0,0,6,8)
+            x = x + 16
+        if i == 3:
+            pyxel.blt(x,y+8,1,0,0,5,1)
+            x = x + 16
+        if i == 2:
+            pyxel.blt(x,y,0,0,0,16,16)
+            x = x +16
+        if i == 1: 
+            pyxel.rect(x,y,16,16,tableau[1])
+            x = x + 16
+        if i == 0:
+           pyxel.rect(x,y,16,16,tableau[2])
+           x = x + 16
+        l = l + 1
+        if l == 19:
+            l = 0
+            y = y+16
+            x = 0
+    pyxel.text(19,0,"score", 7)
+
+
+
+
+
+
+
+pyxel.init(304, 160)
+a = 0
+enemis_liste=[0,20,40,60]
+enemisposition= 0
+score = 0
+vaisseau = 93
+position_tir = vaisseau
+det = 0
+pyxel.load("my_resource.pyxres")
+pyxel.run(update, draw)
